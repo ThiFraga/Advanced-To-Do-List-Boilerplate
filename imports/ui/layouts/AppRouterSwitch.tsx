@@ -31,7 +31,6 @@ const WrapComponent = ({ component, ...props }: IWrapComponent) => {
 export const AppRouterSwitch = React.memo((switchProps: ILayoutProps) => {
 	const location = useLocation();
 	const navigate = useNavigate();
-
 	return (
 		<Routes location={location}>
 			{(Modules.getListOfRouterModules() || [])

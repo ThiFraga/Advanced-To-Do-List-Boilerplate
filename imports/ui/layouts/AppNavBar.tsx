@@ -19,11 +19,12 @@ import Menu from '@mui/material/Menu';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { Typography } from '@mui/material';
 
 const HomeIconButton = ({ navigate }: any) => {
 	return (
 		<Box onClick={() => navigate('/')} sx={fixedMenuLayoutStyle.containerHomeIconButton}>
-			<img style={fixedMenuLayoutStyle.homeIconButton} src="/images/wireframe/logo.png" />
+			<Typography variant='displaySmall' color={'primary'} >{'To-do List'}</Typography>
 		</Box>
 	);
 };
@@ -127,13 +128,14 @@ export const AppNavBar = (props: IAppNavBar) => {
 							))}
 					</Box>
 					<IconButton 
+						size='large'
 						sx={{
 							[theme.breakpoints.up('sm')] : {
 								display: 'none',
 							}
 						}}
 						onClick={handleMenu}>
-						<MenuIcon />
+						<MenuIcon fontSize='large'/>
 					</IconButton>
 						<Menu
 							anchorEl={anchorEl as Element}

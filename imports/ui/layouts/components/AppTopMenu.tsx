@@ -69,7 +69,6 @@ export const AppTopMenu = (props: ILayoutProps) => {
 							display: 'flex',
 							flexDirection: 'row',
 							alignItems: 'center',
-							border: '1px solid #CCC',
 							color: theme.palette.primary.main
 						}}>
 						<Button
@@ -115,7 +114,7 @@ export const AppTopMenu = (props: ILayoutProps) => {
 						<AccountCircle id="Perfil" name="Perfil" style={appTopMenuStyle.accountCircle} />
 						<ArrowDropDownIcon
 							style={{
-								color: theme.palette.primary.main,
+								color: theme.palette.primary.contrastText,
 								width: 17
 							}}
 						/>

@@ -35,7 +35,19 @@ const homeStyles = {
         marginTop: '2em',
         maxWidth: '100%',
         maxHeight: '100%',
+        padding: '0 10%',
     },
+    listContainer: {
+        width: '100%',
+        maxWidth: '500px',
+        display: 'flex',
+        flexDirections: 'column',
+        alignSelf: 'center',
+    },
+    listItem: {
+        borderBottom: '2px solid',
+        borderColor: 'divider',
+    }
 };
 
 export { homeStyles };

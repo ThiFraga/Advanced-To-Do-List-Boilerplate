@@ -14,6 +14,8 @@
 
  */
 
+import { alignProperty } from "@mui/material/styles/cssUtils";
+
 const signinStyle = {
 	containerSignIn: {
 		width: '100%',
@@ -25,12 +27,17 @@ const signinStyle = {
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
-	labelAccessSystem: {
-		textAlign: 'center',
+	boxAccessSystem: {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	formBox: {
+		display: 'flex',
+		flexDirection: 'column',
+		gap: '10px',
+		alignItems: 'center',
 	},
 	imageLogo: {
 		backgroundColor: '#ff9937',
@@ -41,7 +48,10 @@ const signinStyle = {
 	containerButtonOptions: {
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'space-between'
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '10px',
+		flexWrap: 'wrap-reverse',
 	},
 	containerSocialLoginButton: {
 		width: '100%',
@@ -56,7 +66,7 @@ const signinStyle = {
 		marginLeft: 15
 	},
 	containerRouterSignUp: {
-		marginTop: 15
+		marginTop: 15,
 	},
 	containerLoginOptions: {
 		paddingRight: 5,

@@ -87,7 +87,7 @@ const cinzaMedio = '#BCBEC0';
 
 const darkPalette = {
 	primary: '#F54800',
-	onPrimary: '#000000',
+	onPrimary: '#fff',
 	primaryContainer: '#EEDB7A',
 	onPrimaryContainer: '#FFFFB0',
 	primaryOnHover: 'rgba(10, 187, 152, 0.1)',

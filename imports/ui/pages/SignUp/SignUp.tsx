@@ -8,6 +8,7 @@ import { Link, NavigateFunction } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import TextField from '../../components/SimpleFormFields/TextField/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { userprofileApi } from '../../../userprofile/api/UserProfileApi';
 import SimpleForm from '/imports/ui/components/SimpleForm/SimpleForm';
 
@@ -49,10 +50,10 @@ export const SignUp = (props: ISignUp) => {
 
 	return (
 		<Container style={signUpStyle.containerSignUp}>
-			<h2 style={signUpStyle.labelRegisterSystem}>
-				<img src="/images/wireframe/logo.png" style={signUpStyle.imageLogo} />
-				{'Cadastrar no sistema'}
-			</h2>
+			<Box sx={signUpStyle.boxSignUpToSystem}>
+				<Typography variant='displayMedium' color={'primary'} >{'To-do List'}</Typography>
+				<Typography variant='titleLarge' color={'onSurface'} >{'Cadastrar no Sistema'}</Typography>
+			</Box>
 			<SimpleForm
 				schema={{
 					email: {
@@ -66,7 +67,14 @@ export const SignUp = (props: ISignUp) => {
 						optional: false
 					}
 				}}
-				onSubmit={handleSubmit}>
+				onSubmit={handleSubmit}
+				styles={{
+					display: 'flex',
+					flexDirection: 'column',
+					gap: '10px',
+
+				}}
+				>
 				<TextField id="Email" label="Email" fullWidth name="email" type="email" placeholder="Digite um email" />
 				<TextField id="Senha" label="Senha" fullWidth name="password" placeholder="Digite uma senha" type="password" />
 				<Box sx={signUpStyle.containerButtonOptions}>
@@ -75,10 +83,11 @@ export const SignUp = (props: ISignUp) => {
 					</Button>
 				</Box>
 			</SimpleForm>
-			<Box sx={signUpStyle.containerRouterSignIn}>
-				Já tem uma conta? Faça login clicando{' '}
-				<Link to="/signin" color={'secondary'}>
-					aqui
+			<Box >
+				<Typography variant='bodyMedium' color={'onSurface'}>Já tem uma conta? Faça login clicando{' '}</Typography>
+				
+				<Link to="/signin" color={'primary'}>
+				<Typography variant='bodyMedium' color={'primary'}>aqui!{' '}</Typography>
 				</Link>
 			</Box>
 		</Container>

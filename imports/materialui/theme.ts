@@ -133,7 +133,7 @@ const getLightTheme = (props: { fontScale: number; isMobile: boolean }): IThemeO
 				contrastText: appStyles.onError,
 				light: appStyles.errorContainer
 			},
-			divider: appStyles.cinza90,
+			divider: appStyles.cinza70,
 			action: {
 				active: appStyles.activeBackground,
 				hover: appStyles.primaryOnHover
@@ -789,7 +789,7 @@ const getDarkTheme = (props: { fontScale: number; isMobile: boolean }): IThemeOp
 				contrastText: appStyles.darkPalette.onError,
 				light: appStyles.darkPalette.errorContainer
 			},
-			divider: appStyles.darkPalette.cinza90,
+			divider: appStyles.darkPalette.cinza70,
 			action: {
 				active: appStyles.darkPalette.activeBackground,
 				hover: appStyles.darkPalette.primaryOnHover

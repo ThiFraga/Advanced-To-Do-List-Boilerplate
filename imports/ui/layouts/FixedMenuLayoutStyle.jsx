@@ -28,7 +28,12 @@ const fixedMenuLayoutStyle = {
 	},
 	containerHomeIconButton: {
 		display: 'flex',
-		alignItems: 'center'
+		alignItems: 'center',
+		width: '100%',
+		marginLeft: '10px',
+		[':hover']: {
+			cursor: 'pointer',
+		} 
 	},
 	routerSwitch: {
 		width: '100%',

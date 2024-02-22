@@ -27,11 +27,10 @@ import { Box, Typography } from '@mui/material';
 interface IToDosDetail extends IDefaultDetailProps {
 	toDosDoc: IToDos;
 	save: (doc: IToDos, _callback?: any) => void;
-	hiddenTitleBar?: boolean;
 }
 
 const ToDosDetail = (props: IToDosDetail) => {
-	const { isPrintView, screenState, loading, toDosDoc, save, navigate, user, hiddenTitleBar, closeComponent } = props;
+	const { isPrintView, screenState, loading, toDosDoc, save, navigate, user, closeComponent } = props;
 
 	const theme = useTheme();
 
@@ -81,7 +80,7 @@ const ToDosDetail = (props: IToDosDetail) => {
 					</span>
 				)
 			]}
-			hiddenTitleBar={hiddenTitleBar}
+			hiddenTitleBar={true}
 			>
 			<Typography variant='titleLarge' color={'text.primary'} sx={{marginBottom: '10px'}}>{
 				screenState === 'view'? 'Visualização' : 'Editar' 
@@ -159,11 +158,10 @@ const ToDosDetail = (props: IToDosDetail) => {
 };
 
 interface IToDosDetailContainer extends IDefaultContainerProps {
-	hiddenTitleBar?: boolean;
 }
 
 export const ToDosDetailContainer = withTracker((props: IToDosDetailContainer) => {
-	const { screenState, id, navigate, showNotification, hiddenTitleBar=false, isModal } = props;
+	const { screenState, id, navigate, showNotification } = props;
 
 	const subHandle = !!id ? toDosApi.subscribe('toDosDetail', { _id: id }) : null;
 	const toDosDoc = id && subHandle?.ready() ? toDosApi.findOne({ _id: id }) : {};
@@ -171,7 +169,6 @@ export const ToDosDetailContainer = withTracker((props: IToDosDetailContainer) =
 	return {
 		screenState,
 		toDosDoc,
-		hiddenTitleBar,
 		save: (doc: IToDos, _callback: () => void) => {
 			const selectedAction = screenState === 'create' ? 'insert' : 'update';
 			toDosApi[selectedAction](doc, (e: IMeteorError, r: string) => {

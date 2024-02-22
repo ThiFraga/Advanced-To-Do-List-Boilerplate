@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { IToDos } from "../api/toDosSch";
+import { IToDos } from "../../api/toDosSch";
 import { Box, Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Theme, Typography } from "@mui/material";
 import { Delete, Edit, ExpandLess, ExpandMore, Minimize } from "@mui/icons-material";
 import { useTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
-import { toDosApi } from "../api/toDosApi";
+import { toDosApi } from "../../api/toDosApi";
 
 interface IToDosToList extends IToDos{
     nomeUsuario: string;
@@ -58,6 +58,8 @@ export const TodoListComponent = (props: ITodoListComponentProps) => {
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     flexGrow: 1,
+                                    borderBottom: '2px solid',
+                                    borderColor: 'divider',
                                     [theme.breakpoints.down('sm')] : {
                                         flexDirection: 'column',
                                         alignItems: 'flex-start',
@@ -75,7 +77,6 @@ export const TodoListComponent = (props: ITodoListComponentProps) => {
                                                 alignSelf: 'flex-start',
                                             } 
                                             }}
-                                            onClick={(e) => callView && callView(e,task._id)}
                                         >
                                             <ListItemIcon sx={{minWidth: '0px'}}>
                                                 <Checkbox 
@@ -94,9 +95,11 @@ export const TodoListComponent = (props: ITodoListComponentProps) => {
                                                 </Typography>
                                             } secondary={
                                                 <Typography variant={'labelSmall' ?? 'p'} color={'text.secondary'}  >
-                                                    {task.nomeUsuario}
+                                                    {`Criado por: ${task.nomeUsuario}`}
                                                 </Typography>
-                                            }/>
+                                            }
+                                            onClick={(e) => callView && callView(e,task._id)}
+                                            />
                                         </Box>
                                     
                                     {

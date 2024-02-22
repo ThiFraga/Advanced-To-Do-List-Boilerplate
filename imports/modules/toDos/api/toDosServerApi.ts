@@ -24,14 +24,14 @@ class ToDosServerApi extends ProductServerBase<IToDos> {
 			'concludedToDosList',
 			(filter = {}, options = {}) => {
 				const userId = Meteor.userId();
-
+				console.log(filter); 
 				return this.defaultListCollectionPublication({
-					...filter,
 					concluded: true,
 					$or: [
 						{$and: [{ personal: true, }, { createdby: userId, }]},
 						{personal: false,}
 					  ],
+					...filter,
 				}, {
 					projection: { title: 1, description: 1, createdby: 1, concluded: 1},
 					...options
@@ -49,12 +49,12 @@ class ToDosServerApi extends ProductServerBase<IToDos> {
 				const userId = Meteor.userId();
 
 				return this.defaultListCollectionPublication({
-					...filter,
 					concluded: false,
 					$or: [
 						{$and: [{ personal: true, }, { createdby: userId, }]},
 						{personal: false,}
 					  ],
+					...filter,
 				}, {
 					projection: { title: 1, description: 1, createdby: 1, concluded: 1},
 					...options

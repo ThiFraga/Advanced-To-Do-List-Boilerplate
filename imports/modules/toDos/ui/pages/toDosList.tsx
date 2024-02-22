@@ -22,7 +22,7 @@ import { showLoading } from '/imports/ui/components/Loading/Loading';
 import { ComplexTable } from '/imports/ui/components/ComplexTable/ComplexTable';
 import ToggleField from '/imports/ui/components/SimpleFormFields/ToggleField/ToggleField';
 import { PageLayout } from '/imports/ui/layouts/PageLayout';
-import { TodoListComponent } from '../ToDoListComponent';
+import { TodoListComponent } from '../components/ToDoListComponent';
 import { ArrowLeft, ArrowRight, CheckBox, Edit, Padding } from '@mui/icons-material';
 import { Box, Checkbox, FormControlLabel, Icon, Typography, Switch, IconButton, Pagination } from '@mui/material';
 import { access } from 'fs';
@@ -48,8 +48,7 @@ interface IToDosList extends IDefaultListProps {
 	clearFilter: () => void;
 	onlyUsersTasks: boolean;
 	setOnlyUsersTasks: Function;
-	totalConcluded: number;
-	totalNotConcluded: number;
+	totalPages: number;
 }
 
 const modalStyle = {
@@ -78,7 +77,7 @@ const ToDosList = (props: IToDosList) => {
 		showDeleteDialog,
 		showModal,
 		onSearch,
-		total,
+		totalPages,
 		loading,
 		setFilter,
 		clearFilter,
@@ -89,8 +88,6 @@ const ToDosList = (props: IToDosList) => {
 		isMobile,
 		onlyUsersTasks,
 		setOnlyUsersTasks,
-		totalConcluded,
-		totalNotConcluded,
 		theme,
 	} = props;
 
@@ -117,12 +114,12 @@ const ToDosList = (props: IToDosList) => {
 		});
 	};
 
-	const handleChangePage = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, value: number) => {
-		setPage(value);
+	const handleChangePage = (_event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, page: number) => {
+		setPage(page);
 	};
 
 
-	const handleSwitch = (e: React.ChangeEvent<HTMLInputElement>, fieldData: { name?: string } = {}) => {
+	const handleSwitch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		
 		setOnlyUsersTasks(e.target.value);		
 	}
@@ -181,8 +178,6 @@ const ToDosList = (props: IToDosList) => {
 		});
 	}
 
-	const { title, description, nomeUsuario } = toDosApi.getSchema();
-	const schemaReduzido = { title, description, nomeUsuario: { type: String, label: 'Criado por' } };
 	return (
 		<PageLayout title={'Lista de Tarefas'} actions={[]}>
 			<>
@@ -218,7 +213,7 @@ const ToDosList = (props: IToDosList) => {
 					justifyContent: 'center'
 				}}>
 				<Pagination 
-					count={Math.ceil(Math.max(totalConcluded,totalNotConcluded) / pageProperties.pageSize)}
+					count={totalPages}
 					page={pageProperties.currentPage}
 					onChange={handleChangePage}
 				/>
@@ -315,7 +310,7 @@ export const ToDosListContainer = withTracker((props: IDefaultContainerProps) =>
 		concluded: false,
 	}).fetch() : [];
 	
-
+	console.log(toDossNotConcluded);
 	return {
 		toDossConcluded,
 		toDossNotConcluded,
@@ -351,9 +346,9 @@ export const ToDosListContainer = withTracker((props: IDefaultContainerProps) =>
 				toDosSearch.onSearch(...params);
 			}, 1000);
 		},
-		total : (concludedSubHandle && notConcludedSubHandle) ? concludedSubHandle.total+notConcludedSubHandle.total : toDosApi.find(filter).fetch().length,
-		totalConcluded: concludedSubHandle ? concludedSubHandle.total : toDosApi.find(filter).fetch().length,
-		totalNotConcluded: notConcludedSubHandle ? notConcludedSubHandle.total : toDosApi.find(filter).fetch().length,
+		totalPages : (concludedSubHandle?.ready() && notConcludedSubHandle?.ready()) ? 
+						Math.ceil(Math.max(concludedSubHandle.total, notConcludedSubHandle.total) / config.pageProperties.pageSize) :
+						1,
 		pageProperties: config.pageProperties,
 		filter,
 		sort,

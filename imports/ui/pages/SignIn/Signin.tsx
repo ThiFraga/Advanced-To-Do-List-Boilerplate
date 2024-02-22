@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import SimpleForm from '/imports/ui/components/SimpleForm/SimpleForm';
 
 import { signinStyle } from './SigninStyle';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { FixedMenuLayoutContext } from '../../layouts/FixedMenuLayout';
 import { IUserProfile } from '/imports/userprofile/api/UserProfileSch';
 
@@ -70,6 +70,7 @@ export const SignIn = (props: ISignIn) => {
 				alignItems: 'center',
 				height: 50,
 				color: '#FFF',
+				borderRadius: '5px',
 				...customCss
 			}}>
 			<i className={iconClass} />
@@ -114,7 +115,7 @@ export const SignIn = (props: ISignIn) => {
 
 	return (
 		<>
-			<Container sx={{ width: '100%', maxWidth: 400 }}>
+			<Container sx={{ width: '100%', maxWidth: 500, marginTop: '20px' }}>
 				<Box
 					sx={{
 						display: 'flex',
@@ -123,17 +124,18 @@ export const SignIn = (props: ISignIn) => {
 						alignItems: 'center'
 					}}>
 					<Box>
-						<h2 style={signinStyle.labelAccessSystem}>
-							<img src="/images/wireframe/logo.png" style={signinStyle.imageLogo} />
-							<span>Acessar o sistema</span>
-						</h2>
+						<Box sx={signinStyle.boxAccessSystem}>
+							<Typography variant='displayMedium' color={'primary'} >{'To-do List'}</Typography>
+							<Typography variant='titleLarge' color={'onSurface'} >{'Acessar o sistema'}</Typography>
+						</Box>
+					
 						<SimpleForm
 							schema={{
 								email: { type: 'String', label: 'Email', optional: false },
 								password: { type: 'String', label: 'Senha', optional: false }
 							}}
 							onSubmit={handleSubmit}>
-							<Box>
+							<Box sx={signinStyle.formBox}>
 								<TextField label="Email" fullWidth={true} name="email" type="email" placeholder="Digite seu email" />
 								<TextField
 									label="Senha"
@@ -161,11 +163,14 @@ export const SignIn = (props: ISignIn) => {
 							key="loginoptions"
 							style={{
 								paddingRight: 5,
-								width: '102%',
+								width: '100%',
 								margin: 0,
 								padding: 0,
 								display: 'flex',
-								flexDirection: 'column'
+								flexDirection: 'column',
+								marginTop: 15,
+								gap: '10px',
+								alignItems: 'center',
 							}}>
 							<Box key="divBtnGoogle" sx={{ width: '100%' }}>
 								<SocialLoginButton
