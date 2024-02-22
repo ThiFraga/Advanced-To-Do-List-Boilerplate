@@ -101,7 +101,7 @@ export const PageLayout = (props: IPageLayout) => {
 					height: '100%',
 					display: 'flex',
 					flexDirection: 'column',
-					paddingBottom: hiddenTitleBar ? 60 : undefined,
+					paddingBottom: hiddenTitleBar ? 0 : undefined,
 					overflowX: 'hidden',
 					overflowY: 'auto',
 					maxHeight: '100%',
@@ -115,7 +115,7 @@ export const PageLayout = (props: IPageLayout) => {
 						justifyContent: 'flex-start',
 						width: '100%',
 						flex: 1,
-						padding: 8,
+						padding: 5,
 						backgroundColor: theme.palette.background.default
 					}}>
 					{children}

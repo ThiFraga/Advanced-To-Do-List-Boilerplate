@@ -17,11 +17,11 @@
 import React from 'react';
 
 /////////////////////////////////////////////// Paleta de cores do prototipo de alta /////////////////////////////////
-const primary = '#5a9902';
+const primary = '#F54800';
 const onPrimary = '#FFFFFF';
-const primaryContainer = '#9DE4D6';
-const onPrimaryContainer = '#034944';
-const primaryOnHover = 'rgba(0, 126, 122, 0.1)';
+const primaryContainer = '#EEDB7A';
+const onPrimaryContainer = '#473C06';
+const primaryOnHover = 'rgba(255, 50, 13, 0.5)';
 
 const secondary = '#2182C0';
 const onSecondary = '#034944';
@@ -36,7 +36,7 @@ const onErrorContainer = '#B30501';
 
 const background = '#F0F2FB';
 const onBackground = '#404040';
-const buttonOnHover = '#006B68';
+const buttonOnHover = '#FF2500';
 
 const primaryGradient = 'linear-gradient(180deg, #0ABB98 0%, #08AE92 45.83%, #06A28B 69.27%, #007E7A 100%)';
 const secondaryGradient = 'linear-gradient(180deg, #034944 0%, #007E7A 100%)';
@@ -86,10 +86,10 @@ const cinzaMedio = '#BCBEC0';
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const darkPalette = {
-	primary: '#307000',
+	primary: '#F54800',
 	onPrimary: '#000000',
-	primaryContainer: '#034944',
-	onPrimaryContainer: '#9DE4D6',
+	primaryContainer: '#EEDB7A',
+	onPrimaryContainer: '#FFFFB0',
 	primaryOnHover: 'rgba(10, 187, 152, 0.1)',
 
 	secondary: '#0272BA',

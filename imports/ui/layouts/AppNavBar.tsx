@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -12,10 +12,13 @@ import Toolbar from '@mui/material/Toolbar';
 import * as appStyle from '/imports/materialui/styles';
 import Container from '@mui/material/Container';
 import { IAppMenu } from '/imports/modules/modulesTypings';
-import { FormControlLabel } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import { ILayoutProps } from '/imports/typings/BoilerplateDefaultTypings';
 import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import MenuItem from '@mui/material/MenuItem';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const HomeIconButton = ({ navigate }: any) => {
 	return (
@@ -30,8 +33,18 @@ interface IAppNavBar extends ILayoutProps {}
 export const AppNavBar = (props: IAppNavBar) => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [anchorEl, setAnchorEl] = useState<Object | null>(null);
+	const open = Boolean(anchorEl);
 
-	const { user, theme, themeOptions } = props;
+	const { user, theme, themeOptions, showDialog } = props;
+
+	const handleMenu = (event: React.SyntheticEvent) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 	const pathIndex = (Modules.getAppMenuItemList() || [])
 		.filter((item: IAppMenu | null) => !item?.isProtected || (user && user.roles?.indexOf('Publico') === -1))
@@ -93,7 +106,10 @@ export const AppNavBar = (props: IAppNavBar) => {
 							width: '100%',
 							display: 'flex',
 							flexDirection: 'row',
-							justifyContent: 'flex-end'
+							justifyContent: 'flex-end',
+							[theme.breakpoints.down('sm')] : {
+								display: 'none',
+							}
 						}}>
 						{(Modules.getAppMenuItemList() || [])
 							.filter((item: IAppMenu | null) => !item?.isProtected || (user && user.roles?.indexOf('Publico') === -1))
@@ -110,6 +126,60 @@ export const AppNavBar = (props: IAppNavBar) => {
 								</Button>
 							))}
 					</Box>
+					<IconButton 
+						sx={{
+							[theme.breakpoints.up('sm')] : {
+								display: 'none',
+							}
+						}}
+						onClick={handleMenu}>
+						<MenuIcon />
+					</IconButton>
+						<Menu
+							anchorEl={anchorEl as Element}
+							anchorOrigin={{
+								vertical: 'center',
+								horizontal: 'right'
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: 'center',
+								horizontal: 'right'
+							}}
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+								gap: '5px'
+							}}
+							open={open}
+							onClose={handleClose}>
+								{(Modules.getAppMenuItemList() || [])
+									.filter((item: IAppMenu | null) => !item?.isProtected || (user && user.roles?.indexOf('Publico') === -1))
+									.map((menuData, ind) => (
+										<MenuItem 
+											key={menuData?.path}
+											onClick={() => navigate(menuData?.path as string)}
+											sx={{
+												color: 'primary.main',
+												border: 'none',
+												width: '100%',
+												display: 'flex',
+												flexDirection: 'column',
+												alignItems: 'center',
+												textAlign: 'center',
+												justifyContent: 'center',
+												[':hover']: {
+													color: 'surface',
+													border: 'none',
+												}
+											}}
+											>
+											{menuData?.name}
+										</MenuItem>
+										
+									))}
+						</Menu>
 				</Toolbar>
 			</Container>
 		</AppBar>

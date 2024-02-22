@@ -111,7 +111,6 @@ export default ({ name, label, value, onChange, readOnly, error, containerStyle,
 				onChange={handleChange}
 				onBlur={onBlur}
 				value={dateValue && dateValue instanceof Date ? formatDate(dateValue) : dateValue}
-				//value={dateValue}
 				InputProps={{ inputProps: { min: otherProps.min || undefined } }}
 				error={!!error}
 				disabled={!!readOnly}

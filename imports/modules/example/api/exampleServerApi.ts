@@ -16,9 +16,10 @@ class ExampleServerApi extends ProductServerBase<IExample> {
 
 		this.addTransformedPublication(
 			'exampleList',
-			(filter = {}) => {
+			(filter = {},options = {}) => {
 				return this.defaultListCollectionPublication(filter, {
-					projection: { image: 1, title: 1, description: 1, createdby: 1 }
+					projection: { image: 1, title: 1, description: 1, createdby: 1 },
+					...options,
 				});
 			},
 			(doc: IExample & { nomeUsuario: string }) => {

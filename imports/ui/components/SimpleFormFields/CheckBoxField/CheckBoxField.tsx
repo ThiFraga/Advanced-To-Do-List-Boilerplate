@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Check from '@mui/icons-material/Check';
 
 import { hasValue } from '/imports/libs/hasValue';
-
+import { IBaseSimpleFormComponent } from '../../InterfaceBaseSimpleFormComponent';
 import SimpleLabelView from '/imports/ui/components/SimpleLabelView/SimpleLabelView';
 import { checkBoxStyle } from './CheckBoxFieldStyle';
 import { read } from 'fs';

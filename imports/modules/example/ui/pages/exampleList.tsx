@@ -106,7 +106,7 @@ const ExampleList = (props: IExampleList) => {
 
 	const { image, title, description, nomeUsuario } = exampleApi.getSchema();
 	const schemaReduzido = { image, title, description, nomeUsuario: { type: String, label: 'Criado por' } };
-
+	
 	return (
 		<PageLayout title={'Lista de Exemplos'} actions={[]}>
 			<SearchDocField
